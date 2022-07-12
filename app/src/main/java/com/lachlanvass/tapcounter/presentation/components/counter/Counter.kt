@@ -1,9 +1,7 @@
 package com.lachlanvass.tapcounter.presentation.components.counter
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -21,13 +19,22 @@ fun Counter() {
         mutableStateOf(0)
     }
 
-
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxWidth()
     ) {
 
-        TextField(value = counterName, onValueChange = { counterName = it })
+        // Counter Name
+        TextField(
+            value = counterName,
+            onValueChange = { counterName = it },
+            label = {
+                Text("Thing1")
+            }
+        )
 
+        // Counter Value Display
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
@@ -36,6 +43,17 @@ fun Counter() {
 
             TextField(value = count.toString(), onValueChange = { count = it.toInt() })
         }
+
+        // Subtract and Add Buttons
+
+        Row {
+
+            AddSubtractButton(countOperator = CountOperator.Subtract, fun() { count-- })
+            AddSubtractButton(countOperator = CountOperator.Add, fun() { count++ })
+            AddSubtractButton(countOperator = CountOperator.Reset, fun() { count = 0 })
+
+        }
+
 
     }
 }
