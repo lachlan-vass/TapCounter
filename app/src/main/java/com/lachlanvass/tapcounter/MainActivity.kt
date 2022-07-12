@@ -3,6 +3,8 @@ package com.lachlanvass.tapcounter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -14,8 +16,15 @@ import com.lachlanvass.tapcounter.presentation.components.counternavigation.Navi
 import com.lachlanvass.tapcounter.ui.theme.TapCounterTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        loadCounterUi(numberOfCounters = 2)
+    }
+
+    private fun loadCounterUi(numberOfCounters: Int) {
+
         setContent {
             TapCounterTheme {
                 // A surface container using the 'background' color from the theme
@@ -34,13 +43,20 @@ class MainActivity : ComponentActivity() {
                         }
                     ) {
 
+                    }
+
+                    Column() {
+
+                        repeat(numberOfCounters) {
+                            Counter()
+                        }
 
                     }
-                    Counter()
 
                 }
             }
         }
+
     }
 }
 
