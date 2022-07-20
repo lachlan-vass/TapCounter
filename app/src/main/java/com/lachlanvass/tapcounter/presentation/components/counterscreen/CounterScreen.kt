@@ -27,6 +27,11 @@ fun CounterScreen(
         NumberOfCountersOptions.TWO_COUNTER -> Screen.HomeScreen.route
     }
 
+    val navButtonMessage = when (numberOfOnScreenCounters) {
+        NumberOfCountersOptions.ONE_COUNTER -> CounterNavStringOption.ADD_COUNTER
+        NumberOfCountersOptions.TWO_COUNTER -> CounterNavStringOption.REMOVE_COUNTER
+    }
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
@@ -43,7 +48,7 @@ fun CounterScreen(
             }) {
 
                 Text(
-                    text = "Add Counter",
+                    text = navButtonMessage.message,
                     color = MaterialTheme.colors.secondary,
                     fontSize = MaterialTheme.typography.button.fontSize,
                     fontWeight = FontWeight.Bold
